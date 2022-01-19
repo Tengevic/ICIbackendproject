@@ -20,4 +20,9 @@ const drugs = dbconnect.define('Drugs',{
 })
 
 
-
+drugs.update({ drug_id: '05', name: 'Victor', amount: '6'}, {
+    where: { id: 10 }
+  })
+  .then((data) =>{
+    console.log(data.toJSON())
+   })

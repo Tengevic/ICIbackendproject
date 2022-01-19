@@ -55,7 +55,7 @@ const init = async() => {
         handler: async (request, h) =>{
             console.log(request.payload)
            drugs.create({drug_id: request.payload.id, name: request.payload.name,amount: request.payload.amount}).then((data) =>{
-               console.log(data.toJSON())
+               console.log(data)
                })
             
         }
@@ -65,21 +65,21 @@ const init = async() => {
        method: 'DELETE' ,
        path: '/delete/{id}',
        handler: async (request, h) =>{
+           console.log(request.params.id);
+           const drugs =   await Connection.deleteDrugs(request.params.id);
+           return drugs;
         
-        drugs.destroy({where: {id:request.payload.id}}).then((data) =>{
-            console.log(data.toJSON())
-           })
-     }
+          
+       }
     })
     //   updating drug 
     server.route({
         method: 'PUT' ,
         path: '/update/{id}',
         handler: async (request, h) =>{
-         
-         drugs.update(request.payload,{
-             where :{ id: request.payload.id}
-         })
+            console.log(request.params.id);
+            const drugs =   await Connection.deleteDrugs(drug_id,name,amount, id);
+            return drugs;
       }
      })
 
